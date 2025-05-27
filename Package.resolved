@@ -1,0 +1,24 @@
+{
+  "originHash" : "afbb59ce3fe579169d0284f2cf8a174ad25683eb8fdf71b320344cf330641ecc",
+  "pins" : [
+    {
+      "identity" : "swift-syntax",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/swiftlang/swift-syntax.git",
+      "state" : {
+        "revision" : "0687f71944021d616d34d922343dcef086855920",
+        "version" : "600.0.1"
+      }
+    },
+    {
+      "identity" : "swiftyxpc",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/machineko/SwiftyXPC",
+      "state" : {
+        "branch" : "main",
+        "revision" : "033b7b4defd642f15d8ebbcd561af8cb2c1bc098"
+      }
+    }
+  ],
+  "version" : 3
+}
