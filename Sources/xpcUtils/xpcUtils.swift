@@ -10,7 +10,7 @@ public enum whisperEndpoints: String {
     case encoderPrediction
     case getLang
     
-    public var endpoint: String {
+    public var endpointName: String {
         return "\(deameonID).\(self.rawValue)"
     }
 }
