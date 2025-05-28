@@ -17,7 +17,7 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/Concoction/swift-syntax", branch: "main"),
+        .package(url: "https://github.com/machineko/swift-syntax", branch: "main"),
         .package(url: "https://github.com/machineko/SwiftyXPC", branch: "main"),
 
     ],
