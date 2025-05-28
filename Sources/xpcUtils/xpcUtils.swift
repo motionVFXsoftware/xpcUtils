@@ -4,6 +4,17 @@ import SwiftyXPC
 
 public let deameonID = "com.motionVFX.aiDeamon"
 
+public enum whisperEndpoints: String {
+    case initWhisper
+    case decoderPrediction
+    case encoderPrediction
+    case getLang
+    
+    public var endpoint: String {
+        return "\(deameonID).\(self.rawValue)"
+    }
+}
+
 public struct mCaptionsBuffers: Sendable, Codable {
     @IOSurfaceForXPC public var ids: IOSurface
     @IOSurfaceForXPC public var len: IOSurface
