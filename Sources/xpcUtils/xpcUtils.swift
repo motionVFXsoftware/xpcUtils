@@ -53,10 +53,12 @@ public enum MTLEventError: Error {
 
 public struct decocerParams: Sendable, Codable {
     @IOSurfaceForXPC public var paddingMaskParams: IOSurface
+    public let withAlignment: Bool
 //    public var event: SendableMTLEvent
     
-    public init(paddingMaskParams: IOSurface) {
+    public init(paddingMaskParams: IOSurface, withAlignment: Bool = false) {
         self.paddingMaskParams = paddingMaskParams
+        self.withAlignment = withAlignment
 //        self.event = event
     }
 }
