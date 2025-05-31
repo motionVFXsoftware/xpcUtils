@@ -1,7 +1,6 @@
 import IOSurface
 import Metal
 import SwiftyXPC
-
 public let deameonID = "com.motionVFX.aiDeamon"
 
 public enum whisperEndpoints: String {
@@ -9,11 +8,59 @@ public enum whisperEndpoints: String {
     case decoderPrediction
     case encoderPrediction
     case getLang
+    case decoder64Prediction
+    case decoder192Prediction
     
     public var endpointName: String {
         return "\(deameonID).\(self.rawValue)"
     }
 }
+
+public struct SendableMTLEvent: Sendable, Codable {
+    private let handleData: Data
+
+    public init(from eventHandle: MTLSharedEventHandle) throws {
+        self.handleData = try NSKeyedArchiver.archivedData(
+            withRootObject: eventHandle,
+            requiringSecureCoding: true
+        )
+    }
+
+    public func makeEventHandle() throws -> MTLSharedEventHandle {
+        guard let handle = try NSKeyedUnarchiver.unarchivedObject(
+            ofClass: MTLSharedEventHandle.self,
+            from: handleData
+        ) else {
+            throw MTLEventError.invalidHandle
+        }
+        return handle
+    }
+
+    public func makeSharedEvent(device: MTLDevice) throws -> MTLSharedEvent {
+        let handle = try makeEventHandle()
+        guard let event = device.makeSharedEvent(handle: handle) else {
+            throw MTLEventError.deviceCreationFailed
+        }
+        return event
+    }
+}
+
+public enum MTLEventError: Error {
+    case invalidHandle
+    case deviceCreationFailed
+}
+
+
+public struct decocerParams: Sendable, Codable {
+    @IOSurfaceForXPC public var paddingMaskParams: IOSurface
+//    public var event: SendableMTLEvent
+    
+    public init(paddingMaskParams: IOSurface) {
+        self.paddingMaskParams = paddingMaskParams
+//        self.event = event
+    }
+}
+
 
 public struct mCaptionsBuffers: Sendable, Codable {
     @IOSurfaceForXPC public var ids: IOSurface
@@ -22,9 +69,10 @@ public struct mCaptionsBuffers: Sendable, Codable {
     @IOSurfaceForXPC public var prob: IOSurface
     @IOSurfaceForXPC public var mel: IOSurface
     @IOSurfaceForXPC public var langMask: IOSurface
+    @IOSurfaceForXPC public var specialTokenMask: IOSurface
     @IOSurfaceForXPC public var aligTokens: IOSurface
     
-    public init(ids: IOSurface, len: IOSurface, entropy: IOSurface, prob: IOSurface, mel: IOSurface, langMask: IOSurface, aligTokens: IOSurface) {
+    public init(ids: IOSurface, len: IOSurface, entropy: IOSurface, prob: IOSurface, mel: IOSurface, langMask: IOSurface, aligTokens: IOSurface, specialTokenMask: IOSurface) {
         self.ids = ids
         self.len = len
         self.entropy = entropy
@@ -32,6 +80,7 @@ public struct mCaptionsBuffers: Sendable, Codable {
         self.mel = mel
         self.langMask = langMask
         self.aligTokens = aligTokens
+        self.specialTokenMask = specialTokenMask
     }
 }
 
