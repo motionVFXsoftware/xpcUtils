@@ -10,6 +10,7 @@ public enum whisperEndpoints: String {
     case getLang
     case decoder64Prediction
     case decoder192Prediction
+    case deinitWhisper
     
     public var endpointName: String {
         return "\(deameonID).\(self.rawValue)"
