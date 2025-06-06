@@ -90,10 +90,14 @@ public struct mCaptionsBuffers: Sendable, Codable {
 public struct whisperResponse {
     public struct getLang: Sendable, Codable {
         public let lang: Int32?
+        public let probability: Float32?
+        public let entropy: Float32?
         public let error: WhisperXPCError?
         
-        public init(lang: Int32?, error: WhisperXPCError?) {
+        public init(lang: Int32?, probability: Float32?, entropy: Float32?, error: WhisperXPCError?) {
             self.lang = lang
+            self.probability = probability
+            self.entropy = entropy
             self.error = error
         }
     }
