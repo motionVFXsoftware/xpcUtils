@@ -126,4 +126,6 @@ public enum WhisperXPCError: Error, Codable, Sendable {
     case invalidParameters
     case cannotInitalizeModel
     case unowned
+    case noModelFile(String)
+    case noModelCache(String)
 }
