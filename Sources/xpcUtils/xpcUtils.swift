@@ -53,11 +53,11 @@ public enum MTLEventError: Error {
 
 
 public struct decocerParams: Sendable, Codable {
-    @IOSurfaceForXPC public var paddingMaskParams: IOSurface
+    @IOSurfaceForXPC public var paddingMaskParams: IOSurfaceRef
     public let withAlignment: Bool
 //    public var event: SendableMTLEvent
     
-    public init(paddingMaskParams: IOSurface, withAlignment: Bool = false) {
+    public init(paddingMaskParams: IOSurfaceRef, withAlignment: Bool = false) {
         self.paddingMaskParams = paddingMaskParams
         self.withAlignment = withAlignment
 //        self.event = event
@@ -66,16 +66,16 @@ public struct decocerParams: Sendable, Codable {
 
 
 public struct mCaptionsBuffers: Sendable, Codable {
-    @IOSurfaceForXPC public var ids: IOSurface
-    @IOSurfaceForXPC public var len: IOSurface
-    @IOSurfaceForXPC public var entropy: IOSurface
-    @IOSurfaceForXPC public var prob: IOSurface
-    @IOSurfaceForXPC public var mel: IOSurface
-    @IOSurfaceForXPC public var langMask: IOSurface
-    @IOSurfaceForXPC public var specialTokenMask: IOSurface
-    @IOSurfaceForXPC public var aligTokens: IOSurface
+    @IOSurfaceForXPC public var ids: IOSurfaceRef
+    @IOSurfaceForXPC public var len: IOSurfaceRef
+    @IOSurfaceForXPC public var entropy: IOSurfaceRef
+    @IOSurfaceForXPC public var prob: IOSurfaceRef
+    @IOSurfaceForXPC public var mel: IOSurfaceRef
+    @IOSurfaceForXPC public var langMask: IOSurfaceRef
+    @IOSurfaceForXPC public var specialTokenMask: IOSurfaceRef
+    @IOSurfaceForXPC public var aligTokens: IOSurfaceRef
     
-    public init(ids: IOSurface, len: IOSurface, entropy: IOSurface, prob: IOSurface, mel: IOSurface, langMask: IOSurface, aligTokens: IOSurface, specialTokenMask: IOSurface) {
+    public init(ids: IOSurfaceRef, len: IOSurfaceRef, entropy: IOSurfaceRef, prob: IOSurfaceRef, mel: IOSurfaceRef, langMask: IOSurfaceRef, aligTokens: IOSurfaceRef, specialTokenMask: IOSurfaceRef) {
         self.ids = ids
         self.len = len
         self.entropy = entropy
