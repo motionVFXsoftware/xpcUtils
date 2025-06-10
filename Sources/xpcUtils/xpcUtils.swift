@@ -129,5 +129,5 @@ public enum WhisperXPCError: Error, Codable, Sendable {
     case noModelFile(String)
     case noModelCache(String)
     case cantAccessLibrary
-    
+    case cantAllocateMemory
 }
