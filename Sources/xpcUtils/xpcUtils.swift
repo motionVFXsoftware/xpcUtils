@@ -102,7 +102,27 @@ public struct whisperResponse {
         }
     }
     
-    public struct whisperInit: Sendable, Codable {
+//    public struct whisperInit: Sendable, Codable {
+//        public let mCaptionsBuffers: mCaptionsBuffers?
+//        public let error: WhisperXPCError?
+//        
+//        public init(mCaptionsBuffers: mCaptionsBuffers?, error: WhisperXPCError?) {
+//            self.mCaptionsBuffers = mCaptionsBuffers
+//            self.error = error
+//        }
+//    }
+//
+    public struct initWhisper: Sendable, Codable {
+        public let status: initStatus
+        public let error: WhisperXPCError?
+        
+        public init(status: initStatus, error: WhisperXPCError?) {
+            self.status = status
+            self.error = error
+        }
+    }
+    
+    public struct getBuffers: Sendable, Codable {
         public let mCaptionsBuffers: mCaptionsBuffers?
         public let error: WhisperXPCError?
         
@@ -111,6 +131,7 @@ public struct whisperResponse {
             self.error = error
         }
     }
+    
     
     public struct baseRequest: Sendable, Codable {
         public let error: WhisperXPCError?
@@ -130,4 +151,8 @@ public enum WhisperXPCError: Error, Codable, Sendable {
     case noModelCache(String)
     case cantAccessLibrary
     case cantAllocateMemory
+}
+
+public enum initStatus: Sendable, Codable {
+    case initialized, waiting, failed, notInitialized
 }
