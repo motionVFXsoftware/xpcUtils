@@ -157,3 +157,21 @@ public enum WhisperXPCError: Error, Codable, Sendable {
 public enum initStatus: Sendable, Codable {
     case initialized, waiting, failed, notInitialized
 }
+
+public enum MPSGraphComputeDevice: UInt64, Sendable, Codable {
+    case none = 0
+    case gpu = 1
+    case neuralEngine = 2
+    case gpuAndNeuralEngine = 3
+    case cpu = 4
+    case gpuAndCpu = 5
+    case cpuAndNeuralEngine = 6
+    case all = 7
+}
+
+public struct modelSettings: Sendable, Codable {
+    public let encoderDevice: MPSGraphComputeDevice
+    public let decoderDevice: MPSGraphComputeDevice
+    public let basePath: String
+    public let useCache: Bool
+}
