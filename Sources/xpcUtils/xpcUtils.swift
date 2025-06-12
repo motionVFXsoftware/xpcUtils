@@ -12,6 +12,7 @@ public enum whisperEndpoints: String {
     case decoder192Prediction
     case deinitWhisper
     case getBuffers
+    case checkStatus
     
     public var endpointName: String {
         return "\(deameonID).\(self.rawValue)"
@@ -103,16 +104,6 @@ public struct whisperResponse {
         }
     }
     
-//    public struct whisperInit: Sendable, Codable {
-//        public let mCaptionsBuffers: mCaptionsBuffers?
-//        public let error: WhisperXPCError?
-//        
-//        public init(mCaptionsBuffers: mCaptionsBuffers?, error: WhisperXPCError?) {
-//            self.mCaptionsBuffers = mCaptionsBuffers
-//            self.error = error
-//        }
-//    }
-//
     public struct initWhisper: Sendable, Codable {
         public let status: initStatus
         public let error: WhisperXPCError?
