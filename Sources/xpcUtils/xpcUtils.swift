@@ -174,4 +174,13 @@ public struct modelSettings: Sendable, Codable {
     public let decoderDevice: MPSGraphComputeDevice
     public let basePath: String
     public let useCache: Bool
+    public let deviceID: Int
+    
+    public init(encoderDevice: MPSGraphComputeDevice, decoderDevice: MPSGraphComputeDevice, basePath: String, useCache: Bool, deviceID: Int) {
+        self.encoderDevice = encoderDevice
+        self.decoderDevice = decoderDevice
+        self.basePath = basePath
+        self.useCache = useCache
+        self.deviceID = deviceID
+    }
 }
