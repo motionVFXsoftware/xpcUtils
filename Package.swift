@@ -10,19 +10,16 @@ let package = Package(
     products: [
         .library(
             name: "xpcUtils",
-            targets: ["xpcUtils"]),
+            targets: ["xpcUtils"]
+        ),
         .library(
             name: "xpcMacros",
             targets: ["xpcMacros"]
-        ),
-        .executable(
-            name: "xpcMacrosMacros",
-            targets: ["xpcMacrosMacros"]
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/swiftlang/swift-syntax", branch: "main"),
-        .package(url: "https://github.com/machineko/SwiftyXPC", branch: "main"),
+        .package(url: "https://github.com/swiftlang/swift-syntax", from: "600.0.0"), 
+        .package(url: "https://github.com/machineko/SwiftyXPC", branch: "main")
     ],
     targets: [
         .macro(
@@ -32,16 +29,20 @@ let package = Package(
                 .product(name: "SwiftCompilerPlugin", package: "swift-syntax")
             ]
         ),
-        .target(name: "xpcMacros", dependencies: ["xpcMacrosMacros"]),
+        .target(
+            name: "xpcMacros", 
+            dependencies: ["xpcMacrosMacros"]
+        ),
         .target(
             name: "xpcUtils",
             dependencies: [
-                .product(name: "SwiftyXPC", package: "SwiftyXPC"), "xpcMacros"
+                .product(name: "SwiftyXPC", package: "SwiftyXPC"),
+                "xpcMacros"
             ]
         ),
         .testTarget(
             name: "xpcUtilsTests",
             dependencies: ["xpcUtils", "xpcMacros"]
-        ),
+        )
     ]
 )
