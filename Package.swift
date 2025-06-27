@@ -17,7 +17,7 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/swiftlang/swift-syntax", branch: "main"),
+        .package(url: "git@github.com:motionVFXsoftware/swift-syntax.git", branch: "swift-6.1"),
         .package(url: "https://github.com/machineko/SwiftyXPC", branch: "main"),
 
     ],
@@ -40,7 +40,7 @@ let package = Package(
         
         .testTarget(
             name: "xpcUtilsTests",
-            dependencies: ["xpcUtils", "xpcMacros"]
+            dependencies: ["xpcUtils"]
         ),
     ]
 )
