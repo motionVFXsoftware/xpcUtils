@@ -1,4 +1,4 @@
-// swift-tools-version: 6.1
+// swift-tools-version: 6.0
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -10,13 +10,15 @@ let package = Package(
     products: [
         .library(
             name: "xpcUtils",
-            targets: ["xpcUtils"]),
+            targets: ["xpcUtils"]
+        ),
         .library(
             name: "xpcMacros",
             targets: ["xpcMacros"]
         )
     ],
     dependencies: [
+
         .package(url: "git@github.com:motionVFXsoftware/swift-syntax.git", branch: "swift-6.1"),
         .package(url: "https://github.com/machineko/SwiftyXPC", branch: "main"),
 
@@ -29,18 +31,22 @@ let package = Package(
                 .product(name: "SwiftCompilerPlugin", package: "swift-syntax")
             ]
         ),
-        .target(name: "xpcMacros", dependencies: ["xpcMacrosMacros"]),
-
+        .target(
+            name: "xpcMacros", 
+            dependencies: ["xpcMacrosMacros"]
+        ),
         .target(
             name: "xpcUtils",
             dependencies: [
-                .product(name: "SwiftyXPC", package: "SwiftyXPC"), "xpcMacros"
+                .product(name: "SwiftyXPC", package: "SwiftyXPC"),
+                "xpcMacros"
             ]
         ),
-        
         .testTarget(
             name: "xpcUtilsTests",
+
             dependencies: ["xpcUtils"]
         ),
+
     ]
 )
