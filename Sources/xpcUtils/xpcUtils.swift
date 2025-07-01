@@ -13,6 +13,7 @@ public enum whisperEndpoints: String {
     case deinitWhisper
     case getBuffers
     case checkStatus
+    case saveCache
     
     public var endpointName: String {
         return "\(deameonID).\(self.rawValue)"
@@ -160,18 +161,25 @@ public enum MPSGraphComputeDevice: UInt64, Sendable, Codable {
     case all = 7
 }
 
+public enum modelVersion: UInt8, Sendable, Codable {
+    case fp16 = 0
+    case i8 = 1
+}
+
 public struct modelSettings: Sendable, Codable {
     public let encoderDevice: MPSGraphComputeDevice
     public let decoderDevice: MPSGraphComputeDevice
     public let basePath: String
     public let useCache: Bool
     public let deviceID: Int
+    public let modelVersion: modelVersion
     
-    public init(encoderDevice: MPSGraphComputeDevice, decoderDevice: MPSGraphComputeDevice, basePath: String, useCache: Bool, deviceID: Int) {
+    public init(encoderDevice: MPSGraphComputeDevice, decoderDevice: MPSGraphComputeDevice, basePath: String, useCache: Bool, deviceID: Int, modelVersion: modelVersion) {
         self.encoderDevice = encoderDevice
         self.decoderDevice = decoderDevice
         self.basePath = basePath
         self.useCache = useCache
         self.deviceID = deviceID
+        self.modelVersion = modelVersion
     }
 }
