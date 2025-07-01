@@ -144,6 +144,7 @@ public enum WhisperXPCError: Error, Codable, Sendable {
     case noModelCache(String)
     case cantAccessLibrary
     case cantAllocateMemory
+    case systemVersionNotSupported(Int)
 }
 
 public enum initStatus: Sendable, Codable {
