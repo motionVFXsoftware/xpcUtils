@@ -171,16 +171,18 @@ public struct modelSettings: Sendable, Codable {
     public let encoderDevice: MPSGraphComputeDevice
     public let decoderDevice: MPSGraphComputeDevice
     public let basePath: String
+    public let cachePath: String
     public let useCache: Bool
     public let deviceID: Int
     public let modelVersion: modelVersion
     
-    public init(encoderDevice: MPSGraphComputeDevice, decoderDevice: MPSGraphComputeDevice, basePath: String, useCache: Bool, deviceID: Int, modelVersion: modelVersion) {
+    public init(encoderDevice: MPSGraphComputeDevice, decoderDevice: MPSGraphComputeDevice, basePath: String, cachePath: String, useCache: Bool, deviceID: Int, modelVersion: modelVersion) {
         self.encoderDevice = encoderDevice
         self.decoderDevice = decoderDevice
         self.basePath = basePath
         self.useCache = useCache
         self.deviceID = deviceID
         self.modelVersion = modelVersion
+        self.cachePath = cachePath
     }
 }
