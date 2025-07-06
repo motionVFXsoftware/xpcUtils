@@ -1,6 +1,7 @@
 import IOSurface
 import Metal
 import SwiftyXPC
+import xpcMacros
 public let deameonID = "com.motionVFX.aiDeamon"
 
 public enum whisperEndpoints: String {
@@ -186,3 +187,5 @@ public struct modelSettings: Sendable, Codable {
         self.cachePath = cachePath
     }
 }
+
+
