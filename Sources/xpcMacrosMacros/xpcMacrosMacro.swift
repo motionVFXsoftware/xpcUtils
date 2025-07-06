@@ -279,12 +279,13 @@ public struct GenerateCodableClientMacro: PeerMacro {
     private static func createMethodStub(from method: FunctionDeclSyntax) -> FunctionDeclSyntax {
         let methodName = method.name.text
 
-        // Extract parameters with proper external/internal name handling
-        let parameters = method.signature.parameterClause.parameters.map { param in
-            FunctionParameterSyntax(
+        let parameters = method.signature.parameterClause.parameters.enumerated().map { index, param in
+            let isLast = index == method.signature.parameterClause.parameters.count - 1
+            return FunctionParameterSyntax(
                 firstName: param.firstName,
                 secondName: param.secondName,
-                type: param.type
+                type: param.type,
+                trailingComma: isLast ? nil : .commaToken()
             )
         }
 
@@ -496,7 +497,7 @@ public struct GenerateCodableServerMacro: PeerMacro {
         // Add private listener property
         let listenerProperty = VariableDeclSyntax(
             modifiers: DeclModifierListSyntax([
-                DeclModifierSyntax(name: .keyword(.private))
+                DeclModifierSyntax(name: .keyword(.public))
             ]),
             bindingSpecifier: .keyword(.var),
             bindings: PatternBindingListSyntax([
@@ -546,13 +547,13 @@ public struct GenerateCodableServerMacro: PeerMacro {
                 DeclModifierSyntax(name: .keyword(.open))
             ]),
             name: .identifier(name),
-//            inheritanceClause: InheritanceClauseSyntax(
-//                inheritedTypes: InheritedTypeListSyntax([
-//                    InheritedTypeSyntax(
-//                        type: IdentifierTypeSyntax(name: .identifier(protocolName))
-//                    )
-//                ])
-//            ),
+            inheritanceClause: InheritanceClauseSyntax(
+                inheritedTypes: InheritedTypeListSyntax([
+                    InheritedTypeSyntax(
+                        type: IdentifierTypeSyntax(name: .identifier("@unchecked Sendable"))
+                    )
+                ])
+            ),
             memberBlock: MemberBlockSyntax(
                 members: MemberBlockItemListSyntax(members)
             )
