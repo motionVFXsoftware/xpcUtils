@@ -220,9 +220,9 @@ public struct LangStats: Sendable, Codable {
 }
 
 public struct decoderParams: Sendable, Codable {
-    let curLen: Int
-    let params: IOSurfaceForXPC
-    let withAlignment: Bool
+    public let curLen: Int
+    public let params: IOSurfaceForXPC
+    public let withAlignment: Bool
     
     public init(curLen: Int, params: IOSurfaceForXPC, withAlignment: Bool) {
         self.curLen = curLen
@@ -248,6 +248,7 @@ public protocol WhisperTurbo {
     func checkStatus() async throws -> initStatus
     func checkError() async throws -> WhisperXPCError
     func cleanModels() async throws -> WhisperXPCError
+    func cleanDevice() async throws -> WhisperXPCError
     func getIOSurfaceBuffers() async throws -> mCaptionsBuffers
     
     func resetAllBuffers() async throws -> WhisperXPCError
