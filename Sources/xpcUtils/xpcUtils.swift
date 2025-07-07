@@ -210,7 +210,7 @@ public struct modelSettings: Sendable, Codable {
 //}
 
 public struct LangStats: Sendable, Codable {
-    let lang: Int32, prob: Float32, entropy: Float32
+    public let lang: Int32, prob: Float32, entropy: Float32
     
     public init(lang: Int32, prob: Float32, entropy: Float32) {
         self.lang = lang
@@ -250,5 +250,7 @@ public protocol WhisperTurbo {
     func cleanModels() async throws -> WhisperXPCError
     func getIOSurfaceBuffers() async throws -> mCaptionsBuffers
     
+    func resetAllBuffers() async throws -> WhisperXPCError
+    func resetDecoderBuffers() async throws -> WhisperXPCError
 
 }
