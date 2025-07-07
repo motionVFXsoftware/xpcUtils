@@ -242,7 +242,7 @@ public protocol WhisperTurbo {
     func encoderForward() async throws -> WhisperXPCError
     
     func loadModels(withSettings: modelSettings) async throws -> WhisperXPCError
-    func serializeModels(path: String) async throws -> WhisperXPCError
+    func serializeModels(withSettings: modelSettings) async throws -> WhisperXPCError
     func prepareDevice(deviceID: Int) async throws -> WhisperXPCError
 
     func checkStatus() async throws -> initStatus

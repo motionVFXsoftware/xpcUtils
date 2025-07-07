@@ -299,16 +299,16 @@ public struct GenerateCodableClientMacro: PeerMacro {
         // Create method signature with async throws (handling deprecation)
         var effectSpecifiers = method.signature.effectSpecifiers ?? FunctionEffectSpecifiersSyntax()
 
-        if effectSpecifiers.asyncSpecifier == nil {
-            effectSpecifiers = effectSpecifiers.with(\.asyncSpecifier, .keyword(.async))
-        }
-
-        // Handle the deprecated throwsSpecifier
-        if effectSpecifiers.throwsClause == nil {
-            effectSpecifiers = effectSpecifiers.with(\.throwsClause,
-                ThrowsClauseSyntax(throwsSpecifier: .keyword(.throws))
-            )
-        }
+//        if effectSpecifiers.asyncSpecifier == nil {
+//            effectSpecifiers = effectSpecifiers.with(\.asyncSpecifier, .keyword(.async))
+//        }
+//
+//        // Handle the deprecated throwsSpecifier
+//        if effectSpecifiers.throwsClause == nil {
+//            effectSpecifiers = effectSpecifiers.with(\.throwsClause,
+//                ThrowsClauseSyntax(throwsSpecifier: .keyword(.throws))
+//            )
+//        }
 
         return FunctionDeclSyntax(
             modifiers: DeclModifierListSyntax([
@@ -693,16 +693,16 @@ public struct GenerateCodableServerMacro: PeerMacro {
         // Create method signature with async throws (handling deprecation)
         var effectSpecifiers = method.signature.effectSpecifiers ?? FunctionEffectSpecifiersSyntax()
 
-        if effectSpecifiers.asyncSpecifier == nil {
-            effectSpecifiers = effectSpecifiers.with(\.asyncSpecifier, .keyword(.async))
-        }
+//        if effectSpecifiers.asyncSpecifier == nil {
+//            effectSpecifiers = effectSpecifiers.with(\.asyncSpecifier, .keyword(.async))
+//        }
 
         // Handle the deprecated throwsSpecifier
-        if effectSpecifiers.throwsClause == nil {
-            effectSpecifiers = effectSpecifiers.with(\.throwsClause,
-                ThrowsClauseSyntax(throwsSpecifier: .keyword(.throws))
-            )
-        }
+//        if effectSpecifiers.throwsClause == nil {
+//            effectSpecifiers = effectSpecifiers.with(\.throwsClause,
+//                ThrowsClauseSyntax(throwsSpecifier: .keyword(.throws))
+//            )
+//        }
 
         return FunctionDeclSyntax(
             modifiers: DeclModifierListSyntax([
