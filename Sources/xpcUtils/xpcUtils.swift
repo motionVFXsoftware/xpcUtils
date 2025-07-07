@@ -6,7 +6,7 @@ public let deameonID = "com.motionVFX.aiDeamon"
 
 public extension IOSurfaceRef {
     func asMTLBuffer(_ device: MTLDevice) -> MTLBuffer {
-        guard let buffer = device.makeBuffer(length: IOSurfaceGetAllocSize(self), options: [.storageModeShared]) else {
+        guard let buffer = device.makeBuffer(bytesNoCopy: IOSurfaceGetBaseAddress(self), length: IOSurfaceGetAllocSize(self), options: [.storageModeShared]) else {
             fatalError("Couldn't allocate buffer from IOSurfaceRef")
         }
         return buffer
