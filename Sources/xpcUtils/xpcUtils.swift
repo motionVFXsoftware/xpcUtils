@@ -246,6 +246,9 @@ public protocol WhisperTurbo {
     func prepareDevice(deviceID: Int) async throws -> WhisperXPCError
 
     func checkStatus() async throws -> initStatus
+    func checkModelsStatus() async throws -> initStatus
+    func checkDeviceStatus() async throws -> initStatus
+
     func checkError() async throws -> WhisperXPCError
     func cleanModels() async throws -> WhisperXPCError
     func cleanDevice() async throws -> WhisperXPCError
