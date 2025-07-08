@@ -19,8 +19,8 @@ let package = Package(
     ],
     dependencies: [
 
-        .package(url: "git@github.com:motionVFXsoftware/swift-syntax.git", branch: "swift-6.1"),
-        .package(url: "https://github.com/machineko/SwiftyXPC", branch: "main"),
+        .package(url: "git@github.com:motionVFXsoftware/swift-syntax.git", exact: "6.1.0"),
+        .package(url: "git@github.com:machineko/SwiftyXPC", from: "0.6.0"),
 
     ],
     targets: [
