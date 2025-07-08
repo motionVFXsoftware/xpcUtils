@@ -18,10 +18,8 @@ let package = Package(
         )
     ],
     dependencies: [
-
-        .package(url: "git@github.com:motionVFXsoftware/swift-syntax.git", exact: "6.1.0"),
         .package(url: "git@github.com:machineko/SwiftyXPC", from: "0.6.0"),
-
+        .package(url: "git@github.com:swiftlang/swift-syntax.git", exact: "601.0.1"),
     ],
     targets: [
         .macro(
@@ -40,7 +38,8 @@ let package = Package(
             dependencies: [
                 .product(name: "SwiftyXPC", package: "SwiftyXPC"),
                 "xpcMacros"
-            ]
+            ],
+            
         ),
         .testTarget(
             name: "xpcUtilsTests",
@@ -49,4 +48,10 @@ let package = Package(
         ),
 
     ]
+    
 )
+
+// swift build -c release --enable-experimental-prebuilts
+// or
+// defaults write com.apple.dt.Xcode IDEPackageEnablePrebuilts YES
+
