@@ -38,17 +38,13 @@ let package = Package(
             dependencies: [
                 .product(name: "SwiftyXPC", package: "SwiftyXPC"),
                 "xpcMacros"
-            ],
-            
+            ]
         ),
         .testTarget(
             name: "xpcUtilsTests",
-
             dependencies: ["xpcUtils"]
-        ),
-
+        )
     ]
-    
 )
 
 // swift build -c release --enable-experimental-prebuilts
